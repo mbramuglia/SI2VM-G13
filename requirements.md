@@ -8,7 +8,7 @@ mezclada).
 
 | ID | Requerimiento | Fragmento(s) de origen |
 | G13-8 | El sistema debe rechazar toda solicitud de un vehículo de más de 20 años de antigüedad.|ACTA 3.3 M.DUARTE|
-| G13-9 | | |
+| G13-9 |El sistema debe derivar automáticamente a Suscripción las solicitudes de vehículos cuyo valor supere un umbral determinado. |Acta 3.4 / Acta 4.2 (R. Ferreyra) |
 | G13-10 | | |
 | G13-11 | | |
 
