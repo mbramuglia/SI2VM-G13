@@ -7,12 +7,10 @@ mezclada).
 ## Requerimientos funcionales
 
 | ID | Requerimiento | Fragmento(s) de origen |
-|----|---------------|--------------------------|
-| RF-01 | El sistema debe registrar clientes, con id y nombre| |
-| RF-02 | | |
-| RF-03 | | |
-| RF-04 | | |
-| RF-05 | | |
+| G13-8 | El sistema debe rechazar toda solicitud de un vehículo de más de 20 años de antigüedad.|ACTA 3.3 M.DUARTE|
+| G13-9 | | |
+| G13-10 | | |
+| G13-11 | | |
 
 ## Fragmentos que NO son requerimientos funcionales
 
