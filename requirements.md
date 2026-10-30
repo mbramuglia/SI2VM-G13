@@ -6,13 +6,27 @@ mezclada).
 
 ## Requerimientos funcionales
 
+El ID es el del informe (MDA-nnn); entre paréntesis, la clave del issue en Jira.
+
 | ID | Requerimiento | Fragmento(s) de origen |
-| G13-8 | El sistema debe rechazar toda solicitud de un vehículo de más de 20 años de antigüedad.|ACTA 3.3 M.DUARTE|
-| G13-9 |El sistema debe derivar automáticamente a Suscripción las solicitudes de vehículos cuyo valor supere un umbral determinado. |Acta 3.4 / Acta 4.2 (R. Ferreyra) |
-| G13-10 |El sistema debe mostrar el número y usuario de PAS al emitir desde su terminal.|Acta 3.4 (J. Ponce)|
-| G13-11 (v2) | El sistema debe determinar como VIP, a partir de sus datos y sin carga manual, al cliente que tenga dos o más pólizas vigentes y al menos tres años de antigüedad como cliente. | Acta 3.ª §3.4 (A. Pampín) |
-| G13-12 | El sistema no debe considerar VIP a un cliente con marca de mora mientras la mora siga. [NEEDS CLARIFICATION: momento en que se quita la marca de mora] | Acta 3.ª §3.4; Acta 3.ª §4.6 (M. Duarte) |
-| G13-13 | El sistema debe quitar la categoría VIP, sin intervención manual, a un cliente que deje de cumplir la condición. | Acta 3.ª §3.4 |
+|----|---------------|------------------------|
+| MDA-001 (G13-8) | El sistema debe rechazar toda solicitud de un vehículo de más de 20 años de antigüedad. | Acta 3.3 (M. Duarte) |
+| MDA-002 (G13-9) | El sistema debe derivar automáticamente a Suscripción las solicitudes de vehículos cuyo valor supere un umbral determinado. | Acta 3.4 / Acta 4.2 (R. Ferreyra) |
+| MDA-003 (G13-10) | El sistema debe mostrar el número y usuario de PAS al emitir desde su terminal. | Acta 3.4 (J. Ponce) |
+| MDA-004 (G13-11) · v2 | El sistema debe determinar como VIP, a partir de sus datos y sin carga manual, al cliente que tenga dos o más pólizas vigentes y al menos tres años de antigüedad como cliente. | Acta 3.ª §3.4 (A. Pampín) |
+| MDA-005 (G13-25) | Registro del domicilio del cliente. PENDIENTE DE DECISIÓN, no se especifica. [NEEDS CLARIFICATION: el Caso dice «domicilio» y SIGA pide solo «Zona de radicación»; no figura decisor en las actas] | Caso §2.1; hallazgo E1-02 |
+| MDA-006 (G13-26) | El sistema debe permitir dar de baja un vehículo registrado. [NEEDS CLARIFICATION: la baja sale de SIGA, no de una decisión del negocio; falta decidir si se mantiene y quién puede pedirla] | SIGA, lista de vehículos, acción «Baja» (captura E0-1) |
+| MDA-007 (G13-23) | El sistema no debe considerar VIP a un cliente con marca de mora mientras la mora siga. [NEEDS CLARIFICATION: momento en que se quita la marca de mora; Acta 3.ª §4.6, M. Duarte, 20/11/2026] | Acta 3.ª §3.4; Acta 3.ª §4.6 (M. Duarte) |
+| MDA-008 (G13-24) | El sistema debe quitar la categoría VIP, sin intervención manual, a un cliente que deje de cumplir la condición. | Acta 3.ª §3.4 (A. Pampín) |
+| MDA-009 (G13-27) | El sistema debe permitir elegir la marca y el modelo del vehículo de una tabla. [NEEDS CLARIFICATION: quién actualiza la tabla y qué hace el usuario si el modelo no está] | Caso §2.1; hallazgo E0-02 |
+
+## Historial de versiones de los requerimientos
+
+| ID | Versión | Fecha | Qué cambió | Issue de cambio |
+|----|---------|-------|------------|-----------------|
+| MDA-004 | v1 | 16/10/2026 | «El sistema debe categorizar a un cliente como VIP.» [NEEDS CLARIFICATION: antigüedad de 5 años (M. Duarte) o varias pólizas vigentes (R. Ferreyra); Acta 4.1]. Commit b5002b2. | — |
+| MDA-004 | v2 | 30/10/2026 | La Dirección decide combinar los dos criterios y que el sistema los determine sin carga manual (Acta 3.ª §3.4). Se agregan MDA-007 y MDA-008. Commit 86bab41. | G13-22 |
+
 ## Fragmentos que NO son requerimientos funcionales
 
 | Fragmento | Texto | Categoría | Justificación |
@@ -32,10 +46,12 @@ mezclada).
 | # | Conflicto | Fragmentos en conflicto | RF afectado | Estado | Decisor |
 |---|-----------|-------------------------|-------------|--------|---------|
 | C1 | Antigüedad máxima del vehículo. | Caso §4: M. Duarte («autos de más de veinte años no tomamos») vs. S. Roldán («se lo tomamos igual hasta veinticinco»). | MDA-001 | Resuelto: 20 años, sin excepciones (Acta 3.3). | M. Duarte |
-| C2 | Criterio de cliente VIP. | Caso §4: M. Duarte («el que tiene antigüedad… cinco años») vs. R. Ferreyra («el que tiene varias pólizas»). | Resuelto: Acta 3.ª §3.4 (A. Pampín) | Pendiente (Acta 4.1). | M. Duarte y R. Ferreyra |
-| C3 | Valor del vehículo a partir del cual interviene suscripción. | Caso §3.2 («si el vehículo supera cierto valor») y Acta 3.4 («un determinado valor»): ninguno fija el importe. | MDA-002 → [NEEDS CLARIFICATION: importe del umbral, no definido] | Pendiente (Acta 4.2). | R. Ferreyra |
-| C4 | Acumulación de descuentos (afecta el 15 % VIP). | Caso §4: H. Vidal («están topeados, no se pueden acumular») vs. J. Ponce («los descuentos se suman»). | Ninguno todavía (impacta en MDA-004) | Pendiente (Acta 4.3). | M. Duarte y H. Vidal |
+| C2 | Criterio de cliente VIP. | Caso §4: M. Duarte («el que tiene antigüedad… cinco años») vs. R. Ferreyra («el que tiene varias pólizas»). | MDA-004 (v2), MDA-007 y MDA-008 | Resuelto: dos o más pólizas vigentes y al menos tres años de antigüedad, determinado por el sistema (Acta 3.ª §3.4). Queda abierto el descuento asociado (ver C4). | A. Pampín |
+| C3 | Valor del vehículo a partir del cual interviene suscripción. | Caso §3.2 («si el vehículo supera cierto valor») y Acta 3.4 («un determinado valor»): ninguno fija el importe. | MDA-002 → [NEEDS CLARIFICATION: importe del umbral, no definido] | Pendiente (Acta 4.2). Nota E4: el Acta 3.ª §3.2 fija el importe; es el punto del frente 2 (Emisión) y no se trabaja en este frente. | R. Ferreyra |
+| C4 | Acumulación de descuentos (afecta el 15 % VIP). | Caso §4: H. Vidal («están topeados, no se pueden acumular») vs. J. Ponce («los descuentos se suman»). | Ninguno todavía (impacta en el beneficio asociado al VIP de MDA-004) | Pendiente (Acta 2.ª §4.3). | M. Duarte y H. Vidal |
 | C5 | Terminología prima/premio. | Acta 3.4 («la prima final que va a pagar el cliente») vs. Glosario §6 (lo que paga el cliente es el premio). | MDA-003 | Observación: en los RF usar «premio». | — |
 | C6 | Lo declarado vs. lo implementado. | Caso §2.1 (marca y modelo desde una tabla; alta con domicilio) vs. SIGA (texto libre; solo «Zona de radicación»). | Ninguno (hallazgos E0-2 y E1-2) | Observación: SIGA no sirve como fuente de reglas. | — |
 
 -
+| C7 | Momento en que se quita la marca de mora. | Acta 3.ª §3.4 («no es VIP mientras la mora siga») y Acta 3.ª §3.8 (la anulación por falta de pago marca al cliente en mora): ninguna dice cuándo se quita. | MDA-007 → [NEEDS CLARIFICATION: momento en que se quita la marca de mora] | Pendiente (Acta 3.ª §4.6). | M. Duarte (20/11/2026) |
+| C8 | Clientes que hoy figuran como VIP en SIGA. | Acta 3.ª §3.4: la marca se pone a mano en la ficha del cliente; se acordó que el equipo de análisis los revise contra la nueva definición. | Ninguno todavía (hallazgo E4-2) | Pendiente de decisión: qué hacer con los que no cumplen. | M. Duarte |
