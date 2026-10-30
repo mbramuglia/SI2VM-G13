@@ -10,8 +10,9 @@ mezclada).
 | G13-8 | El sistema debe rechazar toda solicitud de un vehículo de más de 20 años de antigüedad.|ACTA 3.3 M.DUARTE|
 | G13-9 |El sistema debe derivar automáticamente a Suscripción las solicitudes de vehículos cuyo valor supere un umbral determinado. |Acta 3.4 / Acta 4.2 (R. Ferreyra) |
 | G13-10 |El sistema debe mostrar el número y usuario de PAS al emitir desde su terminal.|Acta 3.4 (J. Ponce)|
-| G13-11 |El sistema debe categorizar a un cliente como VIP. |Acta 4.1 (M. Duarte / R. Ferreyra) |
-
+| G13-11 (v2) | El sistema debe determinar como VIP, a partir de sus datos y sin carga manual, al cliente que tenga dos o más pólizas vigentes y al menos tres años de antigüedad como cliente. | Acta 3.ª §3.4 (A. Pampín) |
+| G13-12 | El sistema no debe considerar VIP a un cliente con marca de mora mientras la mora siga. [NEEDS CLARIFICATION: momento en que se quita la marca de mora] | Acta 3.ª §3.4; Acta 3.ª §4.6 (M. Duarte) |
+| G13-13 | El sistema debe quitar la categoría VIP, sin intervención manual, a un cliente que deje de cumplir la condición. | Acta 3.ª §3.4 |
 ## Fragmentos que NO son requerimientos funcionales
 
 | Fragmento | Texto | Categoría | Justificación |
@@ -31,7 +32,7 @@ mezclada).
 | # | Conflicto | Fragmentos en conflicto | RF afectado | Estado | Decisor |
 |---|-----------|-------------------------|-------------|--------|---------|
 | C1 | Antigüedad máxima del vehículo. | Caso §4: M. Duarte («autos de más de veinte años no tomamos») vs. S. Roldán («se lo tomamos igual hasta veinticinco»). | MDA-001 | Resuelto: 20 años, sin excepciones (Acta 3.3). | M. Duarte |
-| C2 | Criterio de cliente VIP. | Caso §4: M. Duarte («el que tiene antigüedad… cinco años») vs. R. Ferreyra («el que tiene varias pólizas»). | MDA-004 → [NEEDS CLARIFICATION: antigüedad de 5 años (Duarte) vs. varias pólizas (Ferreyra)] | Pendiente (Acta 4.1). | M. Duarte y R. Ferreyra |
+| C2 | Criterio de cliente VIP. | Caso §4: M. Duarte («el que tiene antigüedad… cinco años») vs. R. Ferreyra («el que tiene varias pólizas»). | Resuelto: Acta 3.ª §3.4 (A. Pampín) | Pendiente (Acta 4.1). | M. Duarte y R. Ferreyra |
 | C3 | Valor del vehículo a partir del cual interviene suscripción. | Caso §3.2 («si el vehículo supera cierto valor») y Acta 3.4 («un determinado valor»): ninguno fija el importe. | MDA-002 → [NEEDS CLARIFICATION: importe del umbral, no definido] | Pendiente (Acta 4.2). | R. Ferreyra |
 | C4 | Acumulación de descuentos (afecta el 15 % VIP). | Caso §4: H. Vidal («están topeados, no se pueden acumular») vs. J. Ponce («los descuentos se suman»). | Ninguno todavía (impacta en MDA-004) | Pendiente (Acta 4.3). | M. Duarte y H. Vidal |
 | C5 | Terminología prima/premio. | Acta 3.4 («la prima final que va a pagar el cliente») vs. Glosario §6 (lo que paga el cliente es el premio). | MDA-003 | Observación: en los RF usar «premio». | — |
