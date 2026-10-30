@@ -26,6 +26,11 @@ El ID es el del informe (MDA-nnn); entre paréntesis, la clave del issue en Jira
 |----|---------|-------|------------|-----------------|
 | MDA-004 | v1 | 16/10/2026 | «El sistema debe categorizar a un cliente como VIP.» [NEEDS CLARIFICATION: antigüedad de 5 años (M. Duarte) o varias pólizas vigentes (R. Ferreyra); Acta 4.1]. Commit b5002b2. | — |
 | MDA-004 | v2 | 30/10/2026 | La Dirección decide combinar los dos criterios y que el sistema los determine sin carga manual (Acta 3.ª §3.4). Se agregan MDA-007 y MDA-008. Commit 86bab41. | G13-22 |
+| MDA-005 | v1 | 30/10/2026 | Alta: requerimiento que mostró la validación de la E3 (domicilio, pendiente de decisión). | — (alta, issue G13-25) |
+| MDA-006 | v1 | 30/10/2026 | Alta: requerimiento que mostró la validación de la E3 (baja de vehículo). | — (alta, issue G13-26) |
+| MDA-007 | v1 | 30/10/2026 | Alta: regla nueva del Acta 3.ª §3.4 (no es VIP con mora). Commit 86bab41, con la clave G13-12 por error, y 2ffbd64, con la clave G13-23. | G13-22 |
+| MDA-008 | v1 | 30/10/2026 | Alta: regla nueva del Acta 3.ª §3.4 (pérdida automática del VIP). Commit 86bab41, con la clave G13-13 por error, y 2ffbd64, con la clave G13-24. | G13-22 |
+| MDA-009 | v1 | 30/10/2026 | Alta: requerimiento que mostró la validación de la E3 (marca y modelo de una tabla). | — (alta, issue G13-27) |
 
 ## Fragmentos que NO son requerimientos funcionales
 
