@@ -3,188 +3,218 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alta de cliente y vehículo · Aseguradora Pampa (página de validación)</title>
+<title>Aseguradora Pampa · Autogestión de clientes</title>
 <style>
-  :root { --fg:#1d2330; --muted:#586174; --line:#d5dae4; --bg:#f5f7fb; --card:#fff; --ok:#17653a; --okbg:#e6f4ec; --err:#9b1c1c; --errbg:#fdeaea; --warn:#7a5200; --warnbg:#fff4d6; --accent:#1f4e8c; }
+  :root {
+    --ink: #14231c;
+    --ink-soft: #4a5b52;
+    --field: #1e5b45;
+    --field-dark: #154434;
+    --wheat: #c9973b;
+    --wheat-soft: #f6ecd6;
+    --mist: #eef2ef;
+    --paper: #ffffff;
+    --line: #cdd8d1;
+    --brick: #a63a2b;
+    --brick-soft: #fbeae6;
+    --ok-soft: #e5f1ea;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
   * { box-sizing: border-box; }
-  body { margin:0; font:16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color:var(--fg); background:var(--bg); }
-  main { max-width:860px; margin:0 auto; padding:24px 16px 56px; }
-  h1 { font-size:1.5rem; margin:0 0 4px; }
-  h2 { font-size:1.1rem; margin:0 0 12px; }
-  p.sub { margin:0 0 20px; color:var(--muted); }
-  section, form { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px; margin-bottom:16px; }
-  label { display:block; font-weight:600; margin:12px 0 4px; }
-  input, select { width:100%; padding:10px; font:inherit; border:1px solid var(--line); border-radius:8px; background:#fff; }
-  .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  @media (max-width:640px){ .row { grid-template-columns:1fr; } }
-  button { margin-top:16px; padding:10px 18px; font:inherit; font-weight:600; color:#fff; background:var(--accent); border:0; border-radius:8px; cursor:pointer; }
-  button:focus-visible, input:focus-visible, select:focus-visible { outline:3px solid #8fb3e6; outline-offset:2px; }
-  .msg { padding:12px 14px; border-radius:8px; margin-top:16px; border:1px solid; }
-  .msg.ok { background:var(--okbg); color:var(--ok); border-color:#b9dec7; }
-  .msg.err { background:var(--errbg); color:var(--err); border-color:#efc2c2; }
-  .warn { background:var(--warnbg); color:var(--warn); border:1px solid #ecd48a; border-radius:8px; padding:10px 12px; margin-top:10px; font-size:.95rem; }
-  .assume { background:#eef3fb; color:#27456f; border:1px solid #c7d5ec; border-radius:8px; padding:10px 12px; margin-top:10px; font-size:.95rem; }
-  table { width:100%; border-collapse:collapse; font-size:.95rem; }
-  th, td { text-align:left; padding:8px; border-bottom:1px solid var(--line); }
-  ul { margin:6px 0 0; padding-left:20px; }
-  li { margin:4px 0; }
-  .tag { font-weight:700; }
-  .hidden { display:none; }
+  body { margin: 0; font: 16px/1.55 var(--sans); color: var(--ink); background: var(--mist); }
+
+  header { background: var(--field-dark); color: #fff; border-bottom: 4px solid var(--wheat); }
+  .bar { max-width: 960px; margin: 0 auto; padding: 18px 20px; display: flex; align-items: baseline; gap: 12px; }
+  .marca { font: 600 1.6rem/1 var(--serif); letter-spacing: .01em; }
+  .bar span { font-size: .95rem; color: #cfe3d9; }
+
+  main { max-width: 960px; margin: 0 auto; padding: 36px 20px 56px; }
+  h1 { font: 600 clamp(1.7rem, 3.4vw, 2.3rem)/1.2 var(--serif); margin: 0 0 8px; }
+  .intro { margin: 0 0 28px; color: var(--ink-soft); max-width: 60ch; }
+
+  .paneles { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 760px) { .paneles { grid-template-columns: 1fr; } }
+
+  .panel { background: var(--paper); border: 1px solid var(--line); border-top: 4px solid var(--field); border-radius: 4px; padding: 24px; }
+  .panel h2 { font: 600 1.3rem/1.25 var(--serif); margin: 0 0 6px; }
+  .panel .desc { margin: 0 0 20px; color: var(--ink-soft); font-size: .95rem; }
+
+  .campo { margin-bottom: 16px; }
+  label { display: block; font-weight: 600; font-size: .95rem; margin-bottom: 4px; }
+  .ayuda { display: block; font-size: .85rem; color: var(--ink-soft); margin-top: 4px; }
+  input[type=text], input[type=number] { width: 100%; padding: 11px 12px; font: inherit; color: var(--ink); background: #fff; border: 1px solid #9fb1a7; border-radius: 4px; }
+  input::placeholder { color: #8a9a91; }
+  .doble { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 420px) { .doble { grid-template-columns: 1fr; } }
+
+  .tilde { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 18px; }
+  .tilde input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--field); }
+  .tilde label { margin: 0; font-weight: 500; }
+
+  button { width: 100%; padding: 13px 18px; font: 600 1rem var(--sans); color: #fff; background: var(--field); border: 0; border-radius: 4px; cursor: pointer; }
+  button:hover { background: var(--field-dark); }
+  button:focus-visible, input:focus-visible { outline: 3px solid var(--wheat); outline-offset: 2px; }
+
+  .resultado { margin-top: 16px; padding: 14px 16px; border-radius: 4px; border-left: 5px solid; font-size: .98rem; }
+  .resultado:empty { display: none; }
+  .resultado strong { display: block; font: 600 1.05rem var(--serif); margin-bottom: 2px; }
+  .resultado.ok { background: var(--ok-soft); border-color: var(--field); }
+  .resultado.vip { background: var(--wheat-soft); border-color: var(--wheat); }
+  .resultado.no { background: var(--brick-soft); border-color: var(--brick); }
+  .resultado ul { margin: 6px 0 0; padding-left: 20px; }
+
+  footer { max-width: 960px; margin: 0 auto; padding: 0 20px 32px; color: var(--ink-soft); font-size: .85rem; }
 </style>
 </head>
 <body>
+<header>
+  <div class="bar">
+    <div class="marca">Pampa</div>
+    <span>Aseguradora</span>
+  </div>
+</header>
+
 <main>
-  <h1>Alta de cliente y vehículo</h1>
-  <p class="sub">Página de validación generada a partir de la especificación del Grupo 13 (UC-01 y requerimientos G13-8 a G13-11). Los datos viven solo en memoria: al recargar se pierden.</p>
+  <h1>Autogestión de clientes</h1>
+  <p class="intro">Registrá tu vehículo y consultá tu categoría de cliente desde un solo lugar.</p>
 
-  <form id="alta" novalidate>
-    <h2>Registro y emisión</h2>
+  <div class="paneles">
+    <section class="panel" aria-labelledby="t-alta">
+      <h2 id="t-alta">Registro de cliente y vehículo</h2>
+      <p class="desc">Completá tus datos y los del vehículo que querés asegurar. Aseguramos vehículos de hasta 20 años de antigüedad.</p>
 
-    <label for="rol">Perfil de uso</label>
-    <select id="rol" name="rol">
-      <option value="operador">Operador de Mesa de Ayuda (autenticado: precondición del UC-01)</option>
-      <option value="pas">Productor Asesor de Seguros (PAS)</option>
-    </select>
+      <form id="alta" novalidate>
+        <div class="campo">
+          <label for="nombre">Nombre y apellido</label>
+          <input id="nombre" type="text" autocomplete="name" aria-describedby="a-nombre">
+          <span class="ayuda" id="a-nombre">Como figura en tu DNI.</span>
+        </div>
+        <div class="doble">
+          <div class="campo">
+            <label for="anio">Año de fabricación</label>
+            <input id="anio" type="number" inputmode="numeric" step="1" placeholder="2018" aria-describedby="a-anio">
+            <span class="ayuda" id="a-anio">Cuatro cifras.</span>
+          </div>
+          <div class="campo">
+            <label for="suma">Valor del vehículo</label>
+            <input id="suma" type="number" inputmode="decimal" min="0" step="any" placeholder="12000000" aria-describedby="a-suma">
+            <span class="ayuda" id="a-suma">En pesos.</span>
+          </div>
+        </div>
+        <button type="submit" id="enviar">Registrar mi vehículo</button>
+        <div id="resultado" class="resultado" role="status" aria-live="polite"></div>
+      </form>
+    </section>
 
-    <h2 style="margin-top:20px">Datos del cliente (tomador)</h2>
-    <label for="nombre">Nombre del tomador</label>
-    <input id="nombre" name="nombre" type="text" autocomplete="off">
+    <section class="panel" aria-labelledby="t-vip">
+      <h2 id="t-vip">Mi categoría de cliente</h2>
+      <p class="desc">Sos cliente VIP si tenés dos o más pólizas vigentes, al menos tres años con nosotros y ningún pago en mora. La categoría se calcula automáticamente y no se puede modificar a mano.</p>
 
-    <h2 style="margin-top:20px">Datos del vehículo</h2>
-    <div class="row">
-      <div>
-        <label for="anio">Año de fabricación</label>
-        <input id="anio" name="anio" type="number" inputmode="numeric" step="1">
-      </div>
-      <div>
-        <label for="suma">Suma asegurada del vehículo ($)</label>
-        <input id="suma" name="suma" type="number" inputmode="decimal" min="0" step="any">
-      </div>
-    </div>
-    <div class="warn" id="aviso-umbral">
-      <span class="tag">[NEEDS CLARIFICATION · G13-9]</span> El valor a partir del cual la solicitud se deriva a Suscripción no está definido (Acta 4.2, decisor R. Ferreyra). La página no evalúa ese umbral.
-    </div>
-
-    <button type="submit" id="enviar">Registrar y emitir</button>
-    <div id="resultado" role="status" aria-live="polite"></div>
-  </form>
-
-  <section id="vip">
-    <h2>Categoría de cliente VIP (G13-11)</h2>
-    <div class="warn">
-      <span class="tag">[NEEDS CLARIFICATION · G13-11]</span> El criterio de cliente VIP no está definido: antigüedad de 5 años (M. Duarte) o varias pólizas vigentes (R. Ferreyra); Acta 4.1. La página no clasifica a ningún cliente como VIP.
-    </div>
-  </section>
-
-  <section id="memoria">
-    <h2>Registros en memoria</h2>
-    <p class="sub" style="margin-bottom:8px">Solo sirve para comprobar qué se guardó y qué no.</p>
-    <table>
-      <thead><tr><th>Tomador</th><th>Año de fabricación</th><th>Suma asegurada</th><th>Cargado como</th></tr></thead>
-      <tbody id="filas"><tr id="vacio"><td colspan="4">Sin registros.</td></tr></tbody>
-    </table>
-    <p id="contador" style="margin:8px 0 0">Registros guardados: <strong id="n">0</strong></p>
-  </section>
-
-  <section id="final">
-    <h2>Puntos pendientes, supuestos y observaciones</h2>
-
-    <h3 style="font-size:1rem;margin:0">Pendientes de decisión ([NEEDS CLARIFICATION])</h3>
-    <ul>
-      <li><strong>G13-9:</strong> importe del umbral de valor para derivar a Suscripción (Acta 4.2, R. Ferreyra).</li>
-      <li><strong>G13-11:</strong> criterio de cliente VIP (Acta 4.1, M. Duarte y R. Ferreyra).</li>
-      <li><strong>G13-10:</strong> formato del número y del usuario de PAS que debe mostrarse al emitir; la especificación no lo define.</li>
-    </ul>
-
-    <h3 style="font-size:1rem;margin:16px 0 0">Supuestos del agente (no vienen de la especificación)</h3>
-    <ul>
-      <li>Campos mínimos del formulario: nombre del tomador, año de fabricación y suma asegurada.</li>
-      <li>Antigüedad = año en curso − año de fabricación.</li>
-      <li>El año de fabricación debe ser un número entero entre 1900 y el año en curso.</li>
-      <li>La emisión solo muestra el mensaje «póliza emitida», sin número ni formato de póliza.</li>
-    </ul>
-
-    <h3 style="font-size:1rem;margin:16px 0 0">Inconsistencias detectadas en la especificación</h3>
-    <ul>
-      <li>En el UC-01, «Solicitar intervención de Suscriptor» figura como <em>include</em> en la tabla de relaciones y como <em>extend</em> en el flujo y en la justificación.</li>
-      <li>Los requerimientos se identifican como G13-x, pero los archivos citan MDA-x.</li>
-      <li>Quedan etiquetas residuales «[cite: …]» en el caso de uso.</li>
-      <li>Los requerimientos G13-9 y G13-11 dependen de puntos abiertos del acta pero no llevan la marca [NEEDS CLARIFICATION].</li>
-      <li>El UC-01 y tres de los cuatro requerimientos corresponden a otros frentes (emisión y VIP), no a Clientes y vehículos.</li>
-    </ul>
-
-    <h3 style="font-size:1rem;margin:16px 0 0">Fuera de alcance</h3>
-    <ul>
-      <li>Bonificaciones, tarifación, cobranza, denuncias de siniestros y almacenamiento persistente.</li>
-    </ul>
-  </section>
+      <form id="vipform" novalidate>
+        <div class="campo">
+          <label for="vip-cliente">Nombre y apellido</label>
+          <input id="vip-cliente" type="text" autocomplete="name">
+        </div>
+        <div class="doble">
+          <div class="campo">
+            <label for="vip-polizas">Pólizas vigentes</label>
+            <input id="vip-polizas" type="number" inputmode="numeric" min="0" step="1" placeholder="2" aria-describedby="a-pol">
+            <span class="ayuda" id="a-pol">Las que están activas hoy.</span>
+          </div>
+          <div class="campo">
+            <label for="vip-antiguedad">Años como cliente</label>
+            <input id="vip-antiguedad" type="number" inputmode="decimal" min="0" step="any" placeholder="3" aria-describedby="a-ant">
+            <span class="ayuda" id="a-ant">Desde tu primer alta.</span>
+          </div>
+        </div>
+        <div class="tilde">
+          <input id="vip-mora" type="checkbox">
+          <label for="vip-mora">Tengo pagos en mora</label>
+        </div>
+        <button type="submit" id="vip-btn">Consultar mi categoría</button>
+        <div id="vip-res" class="resultado" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+  </div>
 </main>
+
+<footer>Aseguradora Pampa S.A.</footer>
 
 <script>
 (function () {
   var registros = [];
-  var form = document.getElementById('alta');
-  var out = document.getElementById('resultado');
-  var filas = document.getElementById('filas');
-  var n = document.getElementById('n');
+  var vipPrevio = {};
 
-  function mostrar(clase, html) {
-    out.innerHTML = '<div class="msg ' + clase + '">' + html + '</div>';
-  }
-  function esc(t) {
-    return String(t).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-    });
-  }
-  function pintar() {
-    filas.innerHTML = '';
-    if (!registros.length) {
-      filas.innerHTML = '<tr id="vacio"><td colspan="4">Sin registros.</td></tr>';
+  function mostrar(el, clase, titulo, detalle) {
+    el.className = 'resultado ' + clase;
+    el.innerHTML = '';
+    var t = document.createElement('strong'); t.textContent = titulo; el.appendChild(t);
+    if (detalle) {
+      if (Array.isArray(detalle)) {
+        var ul = document.createElement('ul');
+        detalle.forEach(function (d) { var li = document.createElement('li'); li.textContent = d; ul.appendChild(li); });
+        el.appendChild(ul);
+      } else {
+        var p = document.createElement('span'); p.textContent = detalle; el.appendChild(p);
+      }
     }
-    registros.forEach(function (r) {
-      var tr = document.createElement('tr');
-      tr.innerHTML = '<td>' + esc(r.nombre) + '</td><td>' + r.anio + '</td><td>' + esc(r.suma === '' ? '—' : r.suma) + '</td><td>' + (r.rol === 'pas' ? 'PAS' : 'Operador de Mesa de Ayuda') + '</td>';
-      filas.appendChild(tr);
-    });
-    n.textContent = registros.length;
   }
 
-  form.addEventListener('submit', function (e) {
+  // Registro de cliente y vehículo: tope de 20 años, sin forma de forzar la carga
+  document.getElementById('alta').addEventListener('submit', function (e) {
     e.preventDefault();
-    var rol = document.getElementById('rol').value;
+    var out = document.getElementById('resultado');
     var nombre = document.getElementById('nombre').value.trim();
     var anioTxt = document.getElementById('anio').value.trim();
     var suma = document.getElementById('suma').value.trim();
     var actual = new Date().getFullYear();
-
-    if (!nombre) { mostrar('err', 'Falta el nombre del tomador.'); return; }
     var anio = Number(anioTxt);
+
+    if (!nombre) { mostrar(out, 'no', 'Falta tu nombre', 'Ingresá tu nombre y apellido para continuar.'); return; }
     if (anioTxt === '' || !Number.isInteger(anio) || anio < 1900 || anio > actual) {
-      mostrar('err', 'El año de fabricación debe ser un número entero entre 1900 y ' + actual + '.');
+      mostrar(out, 'no', 'Revisá el año de fabricación', 'Ingresá un año de cuatro cifras, entre 1900 y ' + actual + '.');
       return;
     }
-
     var antiguedad = actual - anio;
     if (antiguedad > 20) {
-      mostrar('err',
-        '<strong>Solicitud rechazada:</strong> antigüedad mayor a 20 años (' + antiguedad + ' años). ' +
-        'No se registró ningún dato y no hay forma de forzar la carga.');
+      mostrar(out, 'no', 'No podemos asegurar este vehículo',
+        'Aseguramos vehículos de hasta 20 años de antigüedad y el tuyo tiene ' + antiguedad + '.');
       return;
     }
+    registros.push({ nombre: nombre, anio: anio, suma: suma });
+    mostrar(out, 'ok', 'Registro completado', 'Tu póliza fue emitida.');
+    this.reset();
+  });
 
-    registros.push({ nombre: nombre, anio: anio, suma: suma, rol: rol });
-    pintar();
+  // Categoría VIP: dos o más pólizas vigentes, tres años o más y sin mora
+  document.getElementById('vipform').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var out = document.getElementById('vip-res');
+    var nombre = document.getElementById('vip-cliente').value.trim();
+    var polTxt = document.getElementById('vip-polizas').value.trim();
+    var antTxt = document.getElementById('vip-antiguedad').value.trim();
+    var mora = document.getElementById('vip-mora').checked;
+    var pol = Number(polTxt), ant = Number(antTxt);
 
-    var html = '<strong>Póliza emitida.</strong> Vehículo y cliente registrados en memoria.';
-    if (rol === 'pas') {
-      html += '<div class="warn" style="margin-top:10px"><span class="tag">[NEEDS CLARIFICATION · G13-10]</span> ' +
-        'Emisión realizada desde un perfil PAS: la especificación pide mostrar el número y el usuario del PAS, ' +
-        'pero no define su formato ni su valor, por lo que no se muestran datos inventados.</div>';
+    if (!nombre) { mostrar(out, 'no', 'Falta tu nombre', 'Ingresá tu nombre y apellido para continuar.'); return; }
+    if (polTxt === '' || !Number.isInteger(pol) || pol < 0) { mostrar(out, 'no', 'Revisá las pólizas vigentes', 'Ingresá un número entero, por ejemplo 2.'); return; }
+    if (antTxt === '' || isNaN(ant) || ant < 0) { mostrar(out, 'no', 'Revisá los años como cliente', 'Ingresá un número igual o mayor a 0.'); return; }
+
+    var vip = pol >= 2 && ant >= 3 && !mora;
+    var clave = nombre.toLowerCase();
+    var estabaVip = vipPrevio[clave] === true;
+    vipPrevio[clave] = vip;
+
+    if (vip) {
+      mostrar(out, 'vip', 'Sos cliente VIP', 'Tenés ' + pol + ' pólizas vigentes y ' + ant + ' años con nosotros.');
+      return;
     }
-    html += '<div class="warn" style="margin-top:10px"><span class="tag">[NEEDS CLARIFICATION · G13-9]</span> ' +
-      'No se evaluó la derivación a Suscripción: el umbral de valor no está definido.</div>';
-    mostrar('ok', html);
-    form.reset();
+    var faltan = [];
+    if (pol < 2) faltan.push('Necesitás dos o más pólizas vigentes y tenés ' + pol + '.');
+    if (ant < 3) faltan.push('Necesitás al menos tres años como cliente y tenés ' + ant + '.');
+    if (mora) faltan.push('Mientras tengas pagos en mora, no podés ser cliente VIP.');
+    mostrar(out, 'no', estabaVip ? 'Dejaste de ser cliente VIP' : 'Todavía no sos cliente VIP', faltan);
   });
 })();
 </script>
